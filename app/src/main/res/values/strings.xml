@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CropDoc</string>
+    <string name="home_screen_app_bar">CROPDOC</string>
+    <string name="news_screen_app_bar">AgriNews</string>
+    <string name="crop_suggestion_screen_app_bar">Crop Recommendation</string>
+    <string name="crop_disease_prediction_app_bar">Disease Prediction</string>
+    <string name="activity_dashboard_screen_app_bar">Activity Dashboard</string>
+    <string name="add_new_activity_app_bar">Add New Activity</string>
+    <string name="update_existing_activity_app_bar">Update Activity</string>
+
+</resources>
