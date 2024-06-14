@@ -1,8 +1,12 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
-    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
     id("com.google.gms.google-services")
 }
 
@@ -22,6 +26,10 @@ android {
             useSupportLibrary = true
         }
 
+        val properties = Properties()
+        properties.load(FileInputStream(rootProject.file("local.properties")))
+        buildConfigField("String", "WEATHER_API_KEY", "\"${properties.getProperty("WEATHER_API_KEY")}\"")
+        buildConfigField("String", "NEWS_API_KEY", "\"${properties.getProperty("NEWS_API_KEY")}\"")
     }
 
     buildTypes {
@@ -41,10 +49,11 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        android.buildFeatures.buildConfig = true
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.11"
     }
     packaging {
         resources {
@@ -67,27 +76,22 @@ dependencies {
     //Image Loading
     implementation("io.coil-kt:coil-compose:2.4.0")
 
-    val nav_version = "2.7.5"
-    val compose_version = "1.6.0-alpha08"
-    val room = "2.6.0"
-
-    //Google fonts
-    implementation("androidx.compose.ui:ui-text-google-fonts:1.6.3")
-
     // Room
+    val room = "2.6.1"
     implementation("androidx.room:room-runtime:$room")
     implementation("androidx.room:room-ktx:$room")
-    kapt("androidx.room:room-compiler:$room")
+    ksp("androidx.room:room-compiler:$room")
 
-    implementation("androidx.navigation:navigation-compose:$nav_version")
-    implementation("androidx.compose.ui:ui:$compose_version")
-    implementation("androidx.compose.material:material:$compose_version")
-    implementation("androidx.compose.ui:ui-tooling-preview:$compose_version")
+    val navVersion = "2.7.5"
+    val composeVersion = "1.6.0-alpha08"
+    implementation("androidx.navigation:navigation-compose:$navVersion")
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.material:material:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
 
-    implementation("androidx.navigation:navigation-compose:2.7.4")
     implementation("com.google.android.gms:play-services-location:21.0.1")
-    implementation("androidx.compose.ui:ui-text-google-fonts:1.6.1")
-    implementation("androidx.core:core-ktx:1.12.0")
+
+    implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
@@ -99,10 +103,21 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
 
+    //Calendar
     implementation("com.maxkeppeler.sheets-compose-dialogs:core:1.0.2")
-
     implementation("com.maxkeppeler.sheets-compose-dialogs:calendar:1.0.2")
 
+    implementation ("androidx.lifecycle:lifecycle-runtime-compose:2.6.0")
+
+    //Dagger - Hilt
+    val hilt_version = "2.47"
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    ksp("com.google.dagger:hilt-compiler:$hilt_version")
+    ksp("androidx.hilt:hilt-compiler:1.2.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    implementation("androidx.compose.material3:material3:1.2.0-rc01")
+    //Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
@@ -113,7 +128,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2024.02.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
