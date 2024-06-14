@@ -107,7 +107,7 @@ fun ActivityScreen(
         })
 
     var selectedItemIndex1 by rememberSaveable {
-        mutableStateOf(0)
+        mutableStateOf(4)
     }
     Scaffold(
         topBar = {

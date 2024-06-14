@@ -78,7 +78,7 @@ fun DiseasePredictionScreen(
         }
     }
     var selectedItemIndex1 by rememberSaveable {
-        mutableStateOf(0)
+        mutableStateOf(1)
     }
     Scaffold(
         topBar = {

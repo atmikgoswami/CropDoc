@@ -51,7 +51,7 @@ fun NewsScreen(
     newsMainViewModel: NewsMainViewModel = hiltViewModel()
 ) {
     var selectedItemIndex1 by rememberSaveable {
-        mutableStateOf(0)
+        mutableStateOf(3)
     }
     val viewState by newsMainViewModel.categoriesState
     Scaffold(

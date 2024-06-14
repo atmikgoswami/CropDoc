@@ -88,7 +88,7 @@ fun CropSuggestionIntro(
     val context = LocalContext.current
     val locationUtils = LocationUtils(context)
     var selectedItemIndex1 by rememberSaveable {
-        mutableStateOf(0)
+        mutableStateOf(2)
     }
 
     Scaffold(
