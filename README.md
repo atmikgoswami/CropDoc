@@ -7,6 +7,11 @@
 
 <p id="description">CropDoc is an essential tool for farmers, offering precise disease identification, personalized crop recommendations, timely agricultural news updates, and seamless crop activity tracking, all in one user-friendly application.</p>
 
+## Installation ⬇️
+
+<a href="https://github.com/atmikgoswami/CropDoc/releases/download/v2.0/cropdoc.2.0.apk"><img alt="Get it on GitHub" src="https://user-images.githubusercontent.com/69304392/148696068-0cfea65d-b18f-4685-82b5-329a330b1c0d.png" height=80px />
+
+
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
