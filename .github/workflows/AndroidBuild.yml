@@ -1,0 +1,36 @@
+name: Build and Test
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Create local.properties with SDK location
+        run: |
+          echo "sdk.dir=${ANDROID_SDK_ROOT}" > local.properties
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build
+        env:
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          # Artifact name
+          name: CropDoc
+          # A file, directory or wildcard pattern that describes what to upload
+          path: app/build/outputs/apk/debug/app-debug.apk

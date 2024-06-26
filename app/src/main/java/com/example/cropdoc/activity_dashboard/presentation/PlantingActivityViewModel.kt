@@ -77,7 +77,7 @@ class PlantingActivityViewModel @Inject constructor(
         dailyActivityDateState = newDate
     }
 
-    fun addActivity(activity:PlantingActivity){
+    fun addActivity(activity:PlantingActivity) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.get().addActivity(activity = activity)
             getAllActivities()

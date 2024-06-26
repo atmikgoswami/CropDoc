@@ -1,9 +1,9 @@
 package com.example.cropdoc.crop_suggestion.presentation
-import Main
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cropdoc.crop_suggestion.data.models.Main
 import com.example.cropdoc.crop_suggestion.domain.repository.WeatherRepository
 import dagger.Lazy
 import dagger.hilt.android.lifecycle.HiltViewModel

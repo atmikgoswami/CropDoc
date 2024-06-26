@@ -1,7 +1,7 @@
 package com.example.cropdoc.crop_suggestion.domain.network
 
-import WeatherResponse
 import com.example.cropdoc.BuildConfig
+import com.example.cropdoc.crop_suggestion.data.models.WeatherResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 import javax.inject.Singleton

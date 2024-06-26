@@ -1,3 +1,4 @@
+package com.example.cropdoc.crop_suggestion.data.models
 
 data class WeatherResponse(
     val main: Main

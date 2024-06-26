@@ -2,7 +2,16 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="addDailyActivity()">
+        <State />
+      </entry>
       <entry key="app">
+        <State />
+      </entry>
+      <entry key="deleteDailyActivity()">
+        <State />
+      </entry>
+      <entry key="updateDailyActivity()">
         <State />
       </entry>
     </value>
