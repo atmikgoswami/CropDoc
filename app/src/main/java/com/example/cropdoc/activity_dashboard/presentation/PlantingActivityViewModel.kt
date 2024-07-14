@@ -13,10 +13,8 @@ import com.example.cropdoc.activity_dashboard.domain.DailyActivity
 import dagger.Lazy
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -49,19 +47,19 @@ class PlantingActivityViewModel @Inject constructor(
         repository.get()
         getAllActivities()
     }
-    fun onplantNameChanged(newString:String){
+    fun onPlantNameChanged(newString:String){
         plantNameState = newString
     }
 
-    fun onnoOfPlantChanged(newValue: String){
+    fun onNoOfPlantsChanged(newValue: String){
         noOfPlantState = newValue
     }
 
-    fun ondateStateChanged(newDate: String){
+    fun onDateStateChanged(newDate: String){
         dateState = newDate
     }
 
-    fun onharvestWeeksChanged(newValue: String){
+    fun onHarvestWeeksChanged(newValue: String){
         harvestWeeksState = newValue
     }
 
@@ -101,7 +99,7 @@ class PlantingActivityViewModel @Inject constructor(
     fun getAllActivities(){
         viewModelScope.launch(Dispatchers.IO) {
             repository.get().getAllActivities().collect{
-                _activities.value = it;
+                _activities.value = it
             }
         }
     }

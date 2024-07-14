@@ -23,7 +23,7 @@ class DiseaseViewModel @Inject constructor(
         repository.get()
     }
 
-    suspend fun predictDisease(part : MultipartBody.Part){
+    fun predictDisease(part : MultipartBody.Part){
         viewModelScope.launch {
             try {
                 val response = repository.get().getDiseasePrediction(part)

@@ -131,7 +131,6 @@ fun NewsScreen(
                 }
 
                 else -> {
-                    // Display categories
                     NewsCategoryScreen(categories = viewState.list, navigateToDetail)
                 }
             }
@@ -153,10 +152,8 @@ fun NewsCategoryScreen(
     }
 }
 
-// How each item looks like
 @Composable
 fun NewsCategoryItem(category: NewsArticle, navigateToDetail: (NewsArticle) -> Unit) {
-    val customGreyColor = Color(android.graphics.Color.parseColor("#ececec"))
     Row(
         modifier = Modifier
             .padding(12.dp)
@@ -175,10 +172,8 @@ fun NewsCategoryItem(category: NewsArticle, navigateToDetail: (NewsArticle) -> U
             contentScale = ContentScale.Crop
         )
 
-        // Spacer between image and title
         Spacer(modifier = Modifier.width(12.dp))
 
-        // Title on the right side
         category.title?.let {
             Text(
                 text = it,
@@ -190,7 +185,6 @@ fun NewsCategoryItem(category: NewsArticle, navigateToDetail: (NewsArticle) -> U
                 modifier = Modifier.weight(1f),
                 maxLines = 4,
                 overflow = TextOverflow.Ellipsis
-                // Take remaining space
             )
         }
         Spacer(modifier = Modifier.width(4.dp))

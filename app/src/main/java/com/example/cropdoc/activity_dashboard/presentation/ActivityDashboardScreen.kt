@@ -42,7 +42,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SwipeToDismissBox
 import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
@@ -103,7 +102,7 @@ fun ActivityScreen(
         selection = CalendarSelection.Date{
                 date ->
             viewModel.dateState = date.toString()
-            viewModel.ondateStateChanged(date.toString())
+            viewModel.onDateStateChanged(date.toString())
         })
 
     var selectedItemIndex1 by rememberSaveable {
@@ -207,7 +206,7 @@ fun ActivityScreen(
                         Column {
                             OutlinedTextField(
                                 value = viewModel.plantNameState,
-                                onValueChange = { plantName -> viewModel.onplantNameChanged(plantName) },
+                                onValueChange = { plantName -> viewModel.onPlantNameChanged(plantName) },
                                 singleLine = true,
                                 label = { Text(text = "Plant Name")},
                                 modifier = modifier
@@ -216,7 +215,7 @@ fun ActivityScreen(
                             )
                             OutlinedTextField(
                                 value = viewModel.noOfPlantState,
-                                onValueChange = { no-> viewModel.onnoOfPlantChanged(no) },
+                                onValueChange = { no-> viewModel.onNoOfPlantsChanged(no) },
                                 singleLine = true,
                                 label = { Text(text = "No of plants")},
                                 modifier = modifier
@@ -235,7 +234,6 @@ fun ActivityScreen(
                                 .clickable {
                                     calendarState.show()
                                 }, verticalAlignment = Alignment.CenterVertically,
-                                //                horizontalArrangement = Arrangement.Center
                             ){
                                 if(viewModel.dateState.isNotEmpty())
                                     Text(text = viewModel.dateState,modifier = Modifier.padding(start = 15.dp))
@@ -245,7 +243,7 @@ fun ActivityScreen(
                             }
                             OutlinedTextField(
                                 value = viewModel.harvestWeeksState,
-                                onValueChange = { weeks-> viewModel.onharvestWeeksChanged(weeks) },
+                                onValueChange = { weeks-> viewModel.onHarvestWeeksChanged(weeks) },
                                 singleLine = true,
                                 label = { Text(text = "Harvest in weeks")},
                                 modifier = modifier

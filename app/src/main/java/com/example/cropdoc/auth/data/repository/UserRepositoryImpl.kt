@@ -4,7 +4,6 @@ import android.util.Log
 import com.example.cropdoc.auth.data.models.User
 import com.example.cropdoc.auth.domain.UserRepository
 import com.example.cropdoc.auth.domain.Result
-import com.example.cropdoc.di.AppModule
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.channels.awaitClose

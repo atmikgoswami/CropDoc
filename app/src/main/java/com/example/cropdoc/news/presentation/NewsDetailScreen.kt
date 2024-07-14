@@ -2,16 +2,12 @@ package com.example.cropdoc.news.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
@@ -30,7 +26,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Blue
-import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.colorResource
@@ -78,7 +73,7 @@ fun CategoryDetailScreen(navController: NavController, category: NewsArticle, mo
                     IconButton(onClick = { navController.navigateUp() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            tint = Color.Black,
+                            tint = Black,
                             contentDescription = "back",
                             modifier = modifier
                                 .size(38.dp)
@@ -123,9 +118,9 @@ fun CategoryDetailScreen(navController: NavController, category: NewsArticle, mo
                         )
                     }
 
-                    category.description?.let {
+                    category.description?.let {desc->
                         Text(
-                            text = it, textAlign = TextAlign.Justify,
+                            text = desc, textAlign = TextAlign.Justify,
                             modifier = Modifier.padding(start = 12.dp, end = 12.dp),
                             style = TextStyle(
                                 fontSize = 16.sp
@@ -158,7 +153,7 @@ fun HyperlinkText(
     fullText: String,
     hyperLinks: Map<String, String>,
     textStyle: TextStyle = TextStyle.Default,
-    linkTextColor: Color = Color.Blue,
+    linkTextColor: Color = Blue,
     linkTextFontWeight: FontWeight = FontWeight.Normal,
     linkTextDecoration: TextDecoration = TextDecoration.None,
     fontSize: TextUnit = TextUnit.Unspecified

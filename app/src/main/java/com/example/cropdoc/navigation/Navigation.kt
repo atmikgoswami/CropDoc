@@ -14,7 +14,7 @@ import androidx.navigation.navArgument
 import com.example.cropdoc.activity_dashboard.presentation.ActivityScreen
 import com.example.cropdoc.activity_dashboard.presentation.DailyActivityScreen
 import com.example.cropdoc.auth.presentation.AuthViewModel
-import com.example.cropdoc.crop_suggestion.presentation.CropSuggestionIntro
+import com.example.cropdoc.crop_suggestion.presentation.CropSuggestion
 import com.example.cropdoc.news.data.models.NewsArticle
 import com.example.cropdoc.disease_prediction.presentation.DiseasePredictionScreen
 import com.example.cropdoc.news.presentation.CategoryDetailScreen
@@ -67,7 +67,7 @@ fun Navigation(navController: NavHostController = rememberNavController(),
         }
 
         composable(route = Routes.CropRecommendation.route) {
-            CropSuggestionIntro(navController)
+            CropSuggestion(navController)
         }
 
         composable(Routes.ActivityDashboardScreen.route){

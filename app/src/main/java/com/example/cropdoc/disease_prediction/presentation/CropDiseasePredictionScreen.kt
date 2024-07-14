@@ -3,7 +3,6 @@ package com.example.cropdoc.disease_prediction.presentation
 import android.content.Context
 import android.net.Uri
 import android.os.Build
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
@@ -39,7 +38,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -71,10 +69,7 @@ fun DiseasePredictionScreen(
         contract = ActivityResultContracts.PickVisualMedia()
     ) {
         if (it != null) {
-            Log.d("PhotoPicker", "Selected URI: $it")
             imageUri = it
-        } else {
-            Log.d("PhotoPicker", "No media selected")
         }
     }
     var selectedItemIndex1 by rememberSaveable {
@@ -219,38 +214,35 @@ fun upload(imageUri: Uri, context: Context, diseasePredictionViewModel: DiseaseV
     val file = File(filesDir, "crop.jpeg")
     val inputStream = context.contentResolver.openInputStream(imageUri)
     val outputStream = FileOutputStream(file)
-    inputStream!!.copyTo(outputStream)
+    inputStream.use {
+        inputStream!!.copyTo(outputStream)
+    }
 
     val requestBody = file.asRequestBody("crop/*".toMediaTypeOrNull())
     val part = MultipartBody.Part.createFormData("crop",file.name, requestBody)
 
-    Log.d("hello", file.name)
+    diseasePredictionViewModel.predictDisease(part)
 
-    LaunchedEffect(key1 = null) {
-        diseasePredictionViewModel.predictDisease(part)
-        Log.d("hi","${diseasePredictionViewModel.predictionState.value}")
-    }
-
-
-        val diseasePredictionState  = diseasePredictionViewModel.predictionState.value
-        when {
-            diseasePredictionState.loading -> {
-                CircularProgressIndicator(modifier = Modifier.padding(top=16.dp))
-            }
-            diseasePredictionState.error != null -> {
-                Text(
-                    text = "An error occurred: ${diseasePredictionState.error}",
-                )
-            }
-            diseasePredictionState.prediction != null -> {
-                Box(modifier = Modifier
-                    .fillMaxSize()
-                    .padding(top=16.dp)
-                    .clip(RoundedCornerShape(10))
-                    .border(1.dp, Color.Gray, RoundedCornerShape(10))
-                    .background(MaterialTheme.colorScheme.primaryContainer),
-                    contentAlignment = Alignment.Center
-                ) {
+    val diseasePredictionState  = diseasePredictionViewModel.predictionState.value
+    when {
+        diseasePredictionState.loading -> {
+            CircularProgressIndicator(modifier = Modifier.padding(top=16.dp))
+        }
+        diseasePredictionState.error != null -> {
+            Text(
+                text = "An error occurred: ${diseasePredictionState.error}",
+            )
+        }
+        diseasePredictionState.prediction != null -> {
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .padding(top=16.dp)
+                .clip(RoundedCornerShape(10))
+                .border(1.dp, Color.Gray, RoundedCornerShape(10))
+                .background(MaterialTheme.colorScheme.primaryContainer),
+                contentAlignment = Alignment.Center
+            )
+            {
                 Column(
                     modifier = Modifier
                         .fillMaxSize().padding(16.dp),
